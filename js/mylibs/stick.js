@@ -22,8 +22,6 @@ var Stick = {
 	//Events for use
 	newEvent: function () {		
 		var handlers = {
-			msg: '',
-			content: '',
 			'alert': function () {
 				//Message from you
 				this.msg = arguments[0] || '';
@@ -93,7 +91,8 @@ var Stick = {
 		var parse = this.parse,
 			newEvent = this.newEvent,
 			target = $(arguments[0]),
-			get = target.attr('title');
+			//Select a behavior in title, rel or data attribute
+			get = target.attr('title') || target.attr('rel') || target.attr('data-stick');
 		
 		return newEvent(parse(get)[0], parse(get)[1]);
 	}
