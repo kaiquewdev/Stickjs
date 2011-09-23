@@ -20,13 +20,16 @@
 
 var Stick = {
 	//Events for use
-	newEvent: function () {
+	newEvent: function () {		
 		var handlers = {
+			msg: '',
+			content: '',
 			'alert': function () {
 				//Message from you
 				this.msg = arguments[0] || '';
 				//Content from object
 				this.content = window.alert(this.msg);
+				
 				return this;
 			},
 			'confirm': function () {
@@ -34,7 +37,16 @@ var Stick = {
 				this.msg = arguments[0] || '';
 				//Content from object
 				this.content = window.confirm(this.msg);
+				
 				return this;
+			},
+			'log': function () {
+				//Message from you
+				this.msg = arguments[0];
+				//Content from object
+				this.content = console.log(this.msg);
+			 
+				return this;	
 			}
 		};
 		
@@ -53,7 +65,7 @@ var Stick = {
 	parse: function () {
 		//Get a target and execute one handler
 		var str = arguments[0],
-			p = /^[$][.]/,
+			p = /^[$][.]+[a-z:]/,
 			result = [],
 			callback = [];
 		
@@ -61,7 +73,7 @@ var Stick = {
 		if (p.test(str) == true) {
 			/*Filter to result*/
 			result.push(str.match(/^[($.)]+[a-z]+[:]/));
-			result.push(str.match(/[:].[a-z].*$/));
+			result.push(str.match(/[:].*$/));
 			/*Replace to clean results*/
 			callback.push(result[0][0].replace(/[$]+[.]/,'').replace(/[:]/,''));
 			callback.push(result[1][0].replace(/[:]/,''));
@@ -78,7 +90,11 @@ var Stick = {
 	},
 	//Collecting information in the tag to the process behavior
 	collect: function () {
-		var arg = arguments,
-			el = $(arg[0]);
+		var parse = this.parse,
+			newEvent = this.newEvent,
+			target = $(arguments[0]),
+			get = target.attr('title');
+		
+		return newEvent(parse(get)[0], parse(get)[1]);
 	}
 };
