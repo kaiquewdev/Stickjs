@@ -40,7 +40,7 @@ var Stick = {
 				
 				if (typeof elem != 'undefined') {
 					if (param == 'email') {
-						if (/([a-z._-]{3}).[@].([a-z]{1})+([.].[a-z])+([^.]$)+/.test(elem)) {
+						if (/([a-z._-]{3}).([@])+([a-z]{1})+([.].[a-z]{1}$)|([^.]+[a-z]{1}$)/.test(elem)) {
 							alert('Email ok !');
 						} else {
 							return false;
