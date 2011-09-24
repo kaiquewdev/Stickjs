@@ -16,5 +16,10 @@ $('#demo3').bind('click', function (){
 	Stick.collect('#log');
 });
 
+//Test a fourth behavior
+$('#demo4').bind('click', function (){
+	Stick.collect('#email_field');
+});
+
 
 

@@ -20,44 +20,48 @@
 
 var Stick = {
 	//Events for use
-	newEvent: function () {		
+	newEvent: function (behavior, param, elem) {
+		//Behaviors		
 		var handlers = {
 			'alert': function () {
-				//Message from you
-				this.msg = arguments[0] || '';
-				//Content from object
+				this.msg = param || '';
 				this.content = window.alert(this.msg);
-				
-				return this;
 			},
 			'confirm': function () {
-				//Message from you
-				this.msg = arguments[0] || '';
-				//Content from object
+				this.msg = param || '';
 				this.content = window.confirm(this.msg);
-				
-				return this;
 			},
 			'log': function () {
-				//Message from you
-				this.msg = arguments[0];
-				//Content from object
+				this.msg = param;
 				this.content = console.log(this.msg);
-			 
-				return this;	
+			},
+			'valid': function () {
+				var keys = ['email'];
+				
+				if (typeof elem != 'undefined') {
+					if (param == 'email') {
+						if (/([a-z._-]{3}).[@].([a-z]{1})+([.].[a-z])+([^.]$)+/.test(elem)) {
+							alert('Email ok !');
+						} else {
+							return false;
+						}
+					} else {
+						log('Not valid !');
+					}
+				} else {
+					return false;
+				}
 			}
 		};
 		
 		//Verify arguments
-		if (arguments === [] || arguments.length === 0) {
-			return false;
+		if (typeof behavior !== 'undefined' && typeof param !== 'undefined') {
+			return handlers[behavior](param);
 		} else {
-			var i;			
-			for (i in handlers) {
-				var h = handlers[arguments[0]];
-				return h(arguments[1]);
-			}
+			return false;
 		}
+		
+		return this;
 	},
 	//Identify the marking
 	parse: function () {
@@ -92,8 +96,9 @@ var Stick = {
 			newEvent = this.newEvent,
 			target = $(arguments[0]),
 			//Select a behavior in title, rel or data attribute
-			get = target.attr('title') || target.attr('rel') || target.attr('data-stick');
+			get = target.attr('title') || target.attr('rel') || target.attr('data-stick'),
+			item = target.val();
 		
-		return newEvent(parse(get)[0], parse(get)[1]);
+		return newEvent(parse(get)[0], parse(get)[1], item);
 	}
 };
