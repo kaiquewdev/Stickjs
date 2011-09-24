@@ -14,7 +14,7 @@ Examples:
 
 ### Alert behavior
 
-'<p id="demo" data-stick="$.alert: My personal message !"> My tag ! </p>'
+&mdash;p id="demo" data-stick="$.alert: My personal message !"&mdash; My tag ! &mdash;/p&mdash;
 
 The "data-stick", is a attribute of html5, but this lib to parse all tags marked, 
 an are executed in browser who doesn't support this property.
