@@ -38,12 +38,13 @@ var Stick = {
 			'valid': function () {
 				var keys = ['email'];
 				
-				if (typeof elem != 'undefined') {
+				if (typeof elem.val() != 'undefined') {
 					if (param == 'email') {
-						if (/([a-z._-]{3}).([@])+([a-z]{1})+([.].[a-z]{1}$)|([^.]+[a-z]{1}$)/.test(elem)) {
-							alert('Email ok !');
+						if (/(([a-z._-]{2})+(@))+([a-z]{1})+([.].[a-z]{1}$)|([^.]+[a-z]{1}$)/.test(elem.val())) {
+							elem.css({outline:'none'});
+							alert('Tested input text !');
 						} else {
-							return false;
+							elem.css({outline:'2px solid #E7056B'});
 						}
 					} else {
 						log('Not valid !');
@@ -96,9 +97,8 @@ var Stick = {
 			newEvent = this.newEvent,
 			target = $(arguments[0]),
 			//Select a behavior in title, rel or data attribute
-			get = target.attr('title') || target.attr('rel') || target.attr('data-stick'),
-			item = target.val();
+			get = target.attr('title') || target.attr('rel') || target.attr('data-stick');
 		
-		return newEvent(parse(get)[0], parse(get)[1], item);
+		return newEvent(parse(get)[0], parse(get)[1], target);
 	}
 };
