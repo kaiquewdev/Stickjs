@@ -50,7 +50,7 @@ var Stick = {
 							elem.css({outline:'2px solid #E7056B'});
 						}
 					} else {
-						log('Not valid !');
+						return false;
 					}
 				} else {
 					return false;
