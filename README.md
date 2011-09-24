@@ -14,16 +14,16 @@ Examples:
 
 ### Alert behavior
 
-<p id='demo' data-stick='$.alert: My personal message !'> My tag ! </p>
+'<p id="demo" data-stick="$.alert: My personal message !"> My tag ! </p>'
 
-The 'data-stick', is a attribute of html5, but this lib to parse all tags marked, 
+The "data-stick", is a attribute of html5, but this lib to parse all tags marked, 
 an are executed in browser who doesn't support this property.
 
 Use an event of jQuery, for run this action:
 
-$('#demo').bind('load', function () {
+'$("#demo").bind("load", function () {
 	Stick.collect(this);
-});
+});'
 
 Done, His appointment was labeled.
 
