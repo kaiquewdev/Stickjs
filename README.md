@@ -30,10 +30,10 @@ Done, His appointment was labeled.
 Notes:
 ======
 
-data-stick - Identification of a behavior to send for stick.js;
-$. - do one call to your object;
-: - Separate your mark;
-Stick.collect() - Function to collect and research a method in a tag, who was marked;
+*	'data-stick' - Identification of a behavior to send for stick.js;
+*	'$.' - do one call to your object;
+*	':' - Separate your mark;
+*	'Stick.collect()' - Function to collect and research a method in a tag, who was marked;
 
 	
 	
