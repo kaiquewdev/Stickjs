@@ -3,10 +3,7 @@ Stick.js
 
  Experimental lib for control behavior directly in html tag attribute.
  
-Usage
------
-
-Simple for use:
+Simple to use:
 ===============
 
 In your tag, add the simple command '$.bahavior:message', for elements who return one
@@ -15,9 +12,9 @@ message.
 Examples:
 =========
 
-Alert behavior
+### Alert behavior
 
-"<p id='demo' data-stick='$.alert: My personal message !'> My tag ! </p>"
+<p id='demo' data-stick='$.alert: My personal message !'> My tag ! </p>
 
 The 'data-stick', is a attribute of html5, but this lib to parse all tags marked, 
 an are executed in browser who doesn't support this property.
@@ -29,7 +26,6 @@ $('#demo').bind('load', function () {
 });
 
 Done, His appointment was labeled.
-----------------------------------
 
 Notes:
 ======
