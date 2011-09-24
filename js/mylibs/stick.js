@@ -36,11 +36,14 @@ var Stick = {
 				this.content = console.log(this.msg);
 			},
 			'valid': function () {
-				var keys = ['email'];
+				var keys = [
+							['email',
+							/[a-z0-9]+@[a-z0-9]+(([\.][a-z]{2,3}){1,2})$/]
+							];
 				
 				if (typeof elem.val() != 'undefined') {
-					if (param == 'email') {
-						if (/(([a-z._-]{2})+(@))+([a-z]{1})+([.].[a-z]{1}$)|([^.]+[a-z]{1}$)/.test(elem.val())) {
+					if (param == keys[0][0]) {
+						if (keys[0][1].test(elem.val())) {
 							elem.css({outline:'none'});
 							alert('Tested input text !');
 						} else {
