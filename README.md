@@ -7,19 +7,15 @@ Usage
 -----
 
 Simple for use:
----------------
-
-how to execute an action:
--------------------------
+===============
 
 In your tag, add the simple command '$.bahavior:message', for elements who return one
 message.
 
 Examples:
----------
+=========
 
-Alert
------
+Alert behavior
 
 "<p id='demo' data-stick='$.alert: My personal message !'> My tag ! </p>"
 
@@ -33,9 +29,10 @@ $('#demo').bind('load', function () {
 });
 
 Done, His appointment was labeled.
+----------------------------------
 
 Notes:
-------
+======
 
 data-stick - Identification of a behavior to send for stick.js;
 $. - do one call to your object;
