@@ -33,22 +33,26 @@
 
 <body>
   <header>
-
+		<h1>Welcome to <span>Stick.js</span></h1>
   </header>
-  <div role="main">
-	<h1>Welcome to Stick.js</h1>
+  <div class="main" role="main">
 	
-	<p id='alert' data-stick='$.alert:Testing a behavior !'> Testing alert behavior. <button id='demo1'>Click me.</button></p>
-	
-	<hr />
-	
-	<p id='confirm' title='$.confirm:Do you want confirm this demo ?'> Testing confirm behavior. <button id='demo2'>Go!</button></p>
-	
-	<hr />
-	
-	<p id='log' rel='$.log:Code for debug!'> Testing log behavior. <button id='demo3'>Debug</button></p>
-	
-	<hr />
+	<div class="demos">
+		<ul>
+			<li>
+				<p id='alert' data-stick='$.alert:Testing a behavior !'> Testing alert behavior. <button id='demo1'>Click me.</button></p>
+			</li>
+			<li>
+				<p id='confirm' title='$.confirm:Do you want confirm this demo ?'> Testing confirm behavior. <button id='demo2'>Go!</button></p>
+			</li>
+			<li>
+				<p id='log' rel='$.log:Code for debug!'> Testing log behavior. <button id='demo3'>Debug</button></p>	
+			</li>
+			<li>
+				<p id='log' data-stick='$.validate:email'> <input type="text" id="email_field" /> <button id='demo4'>Validate</button></p>	
+			</li>
+		</ul>
+	</div>
 	
   </div>
   <footer>
