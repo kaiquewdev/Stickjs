@@ -340,6 +340,7 @@ div.demos ul li{
 	list-style:none;
 	border-bottom:1px solid #ccc;
 }
-div.demos ul li p{
+div.demos ul li p, div.demos ul li fieldset{
 	padding:5px;
+    margin:10px;
 }

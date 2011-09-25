@@ -36,11 +36,12 @@ var Stick = {
 				this.content = console.log(this.msg);
 			},
 			'valid': function () {
+                //\/([0-9]{2})\/([0-9]{4})
 				var keys = [
 							['email',
 							/[a-z0-9]+@[a-z0-9]+(([\.][a-z]{2,3}){1,2})$/],
 							['date',
-							/[0-9]/]
+							/([0][0-9]|[1-2][0-9]|[3][0-1])\/([0][0-9]|[1][0-2])\/([0-9]{4})/]
 							];
 				
 				if (typeof elem.val() != 'undefined') {
