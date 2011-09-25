@@ -3,7 +3,7 @@ Stick.js
 
  Experimental lib for control behavior directly in html tag attribute.
  
- (http://zapatopi.net/blog/walking-stick_defence_barton-wright_1.gif 'Stick.js')
+ ![alt text](http://zapatopi.net/blog/walking-stick_defence_barton-wright_1.gif 'Stick.js')
  
 Simple to use:
 ===============
