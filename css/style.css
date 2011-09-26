@@ -287,12 +287,12 @@ td { vertical-align: top; }
 }
 
 
-/* == Style ==*/
+/*== Style ==*/
 header {
 	margin: 0;
 	padding: 0;
 	background: #121212;
-	border-top: 2px solid;
+	border-top: 1px solid;
 	border-bottom: 3px solid;
 	border-color: #e7056b;
 	box-shadow:0 2px 15px #000;
