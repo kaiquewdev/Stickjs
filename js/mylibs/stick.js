@@ -22,7 +22,7 @@ var Stick = {
 	//Events for use
 	newEvent: function (behavior, param, elem) {
 		//Behaviors		
-		var handlers = {
+		this.handlers = {
 			'alert': function () {
 				this.msg = param || '';
 				this.content = window.alert(this.msg);
@@ -45,7 +45,7 @@ var Stick = {
                             /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/]
 							];
 				
-				if (typeof elem.val() != 'undefined') {
+				if (typeof elem.val() != 'undefined' || elem.attr('type') == 'text') {
 					if (param == keys[0][0]) {
 						//Email validation
 						if (keys[0][1].test(elem.val())) {
@@ -81,11 +81,11 @@ var Stick = {
 		
 		//Verify arguments
 		if (typeof behavior !== 'undefined' && typeof param !== 'undefined') {
-			return handlers[behavior](param);
+			return this.handlers[behavior](param);
 		} else {
 			return false;
 		}
-		
+
 		return this;
 	},
 	//Identify the marking

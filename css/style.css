@@ -290,8 +290,9 @@ td { vertical-align: top; }
 /* == Style ==*/
 header {
 	margin: 0;
-	padding: 10px;
+	padding: 0;
 	background: #121212;
+	border-top: 2px solid;
 	border-bottom: 3px solid;
 	border-color: #e7056b;
 	box-shadow:0 2px 15px #000;
@@ -311,14 +312,17 @@ header {
 
 header h1 {
 	width:250px;
-	padding:10px;
+	padding:15px;
 	color: #121212;
 	background:#fff;
-	border-width:4px;
-	border:inherit;
+	border-top:5px solid #e7056b;
+;
 }
 
-header h1.logo{
+header .logo{
+    margin: 0 0 2px;
+    padding: 20px 0;
+    width:400px;
 	cursor: pointer;
 }
 

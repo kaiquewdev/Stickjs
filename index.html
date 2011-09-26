@@ -33,7 +33,9 @@
 
 <body>
   <header>
-		<h1 class="logo">Welcome to <span>Stick.js</span></h1>
+        <div class='logo'>
+		    <h1>Welcome to <span>Stick.js</span></h1>
+        </div>
   </header>
   <div class="main" role="main">
 	
@@ -41,36 +43,36 @@
 		<ul>
 			<li>
 				<p id='alert' data-stick='$.alert:Testing a behavior !'> 
-                    Testing alert behavior. <button id='demo1'>Click me.</button>
-                </p>
+                    Testing alert behavior. <button id='demo1'>Click me</button>
+        </p>
 			</li>
 			<li>
 				<p id='confirm' title='$.confirm:Do you want confirm this demo ?'> 
                     Testing confirm behavior. <button id='demo2'>Go!</button>
-                </p>
+        </p>
 			</li>
 			<li>
 				<p id='log' data-stick='$.log:Code for debug!'> 
                     Testing log behavior. <button id='demo3'>Debug</button>
-                </p>	
+        </p>	
 			</li>
 			<li>
 				<fieldset id='email'> 
                     <input type="text" id="email_field" data-stick='$.valid:email' /> 
                     <button id='demo4'>Validate this email</button>
-                </fieldset>
+        </fieldset>
 			</li>
 			<li>
 				<fieldset id='date'> 
                     <input type="text" id="date_field" data-stick='$.valid:date' /> 
                     <button id='demo5'>Validate this date</button>
-                </fieldset>	
+        </fieldset>	
 			</li>
             <li>
 				<fieldset id='url'> 
                     <input type="text" id="url_field" data-stick='$.valid:url' /> 
                     <button id='demo6'>Validate this url</button>
-                </fieldset>	
+        </fieldset>	
 			</li>
 
 		</ul>

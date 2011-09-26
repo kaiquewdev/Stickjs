@@ -31,6 +31,8 @@ $('#demo6').bind('click', function (){
 	Stick.collect('#url_field');
 });
 
+//Test for extend
+
 
 
 
