@@ -26,5 +26,11 @@ $('#demo5').bind('click', function (){
 	Stick.collect('#date_field');
 });
 
+//Test a sixth behavior
+$('#demo6').bind('click', function (){
+	Stick.collect('#url_field');
+});
+
+
 
 
