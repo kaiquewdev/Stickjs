@@ -33,9 +33,12 @@ $('#demo7').bind('click', function (){
 	Stick.collect('#cep_field');
 });
 
-$('header').animate({height:'150px'}, 800).queue(function() {
-	$('div.logo').fadeTo('slow', 1);
-	$(this).dequeue();
+//Waint for complete load window object
+$(window).load(function() {
+	$('header').animate({height:'150px'}, 800).queue(function() {
+		$('div.logo').fadeTo('slow', 1);
+		$(this).dequeue();
+	});
 });
 
 

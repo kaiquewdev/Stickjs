@@ -51,7 +51,8 @@ var Stick = {
                             /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/],
 	                        //CEP Validation
 	                        ['cep',
-	                        /[0-9]{1,1}/]
+	                        /[0-9]/,
+	                        /([0|1|2|3|4|5|6|7|8|9]{8})/]
 				];
 
 				var dStyle = [
@@ -86,7 +87,7 @@ var Stick = {
                         }
                     } else if(param == keys[3][0]) {
                         //CEP validation
-                        if(keys[3][1].test(elem.val())) {
+                        if(keys[3][1].test(elem.val()) && elem.val().length == 8) {
                             elem.css(dStyle[1]);
 							alert('Tested input CEP !');
                         } else {
