@@ -36,12 +36,14 @@ var Stick = {
 				this.content = console.log(this.msg);
 			},
 			'valid': function () {
+				//
 				var keys = [
 							['email',
 							/[a-z0-9]+@[a-z0-9]+(([\.][a-z]{2,3}){1,2})$/],
 							['date',
 							/([0][0-9]|[1-2][0-9]|[3][0-1])\/([0][0-9]|[1][0-2])\/([0-9]{4})/],
                             ['url',
+                            /^(htt(p|ps)\:\/\/)([a-z0-9]{1,255})\.(([a-z]{2,3}))/,
                             /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/]
 							];
 				
@@ -64,7 +66,7 @@ var Stick = {
 						}
 					} else if(param == keys[2][0]) {
                         //Url validation
-                        if(keys[2][1].test(elem.val())) {
+                        if(keys[2][1].test(elem.val()) || keys[2][2].test(elem.val())) {
                             elem.css({outline:'none'});
 							alert('Tested input url !');
                         } else {
