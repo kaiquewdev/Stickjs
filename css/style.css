@@ -353,8 +353,6 @@ header h1 {
 	width:250px;
 	padding:15px;
   color: #fff;
-	/*color: #121212;
-	background:#fff;*/
   border-top:1px solid #e7056b;
 	border-bottom:3px solid #e7056b;
 }
@@ -363,7 +361,8 @@ header .logo{
     margin: 0 0 2px;
     padding: 20px 0;
     width:400px;
-	cursor: pointer;
+    cursor: pointer;
+    display:none;
 }
 
 header h1 span, div.demos h3 span{
