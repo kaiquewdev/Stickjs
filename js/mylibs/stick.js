@@ -38,40 +38,59 @@ var Stick = {
 			'valid': function () {
 				//
 				var keys = [
+							//Email Validation
 							['email',
 							/[a-z0-9]+@[a-z0-9]+(([\.][a-z]{2,3}){1,2})$/],
+							//Date Validation
 							['date',
 							/([0][0-9]|[1-2][0-9]|[3][0-1])\/([0][0-9]|[1][0-2])\/([0-9]{4})/,
 							/([0][0-9]|[1-2][0-9]|[2][0-9])\/([0][2])\/([0-9]{4})/],
+                            //URL Validation
                             ['url',
                             /^(htt(p|ps)\:\/\/)([a-z0-9]{1,255})\.(([a-z]{2,3}))/,
-                            /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/]
-							];
+                            /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/],
+	                        //CEP Validation
+	                        ['cep',
+	                        /[0-9][0-9]/]
+				];
+
+				var dStyle = [
+								//Style test
+								{boxShadow:'0 0 4px #e7056b'},
+								{boxShadow:'none'}];
 				
 				if (typeof elem.val() != 'undefined' || elem.attr('type') == 'text') {
 					if (param == keys[0][0]) {
 						//Email validation
 						if (keys[0][1].test(elem.val())) {
-							elem.css({outline:'none'});
+							elem.css(dStyle[1]);
 							alert('Tested input email !');
 						} else {
-							elem.css({outline:'2px solid #E7056B'});
+							elem.css(dStyle[0]);
 						}
 					} else if (param == keys[1][0]) {
 						//Date validation
 						if (keys[1][1].test(elem.val()) && keys[1][2].test(elem.val())) {
-							elem.css({outline:'none'});
+							elem.css(dStyle[1]);
 							alert('Tested input date !');
 						} else {
-							elem.css({outline:'2px solid #E7056B'});
+							elem.css(dStyle[0]);
 						}
 					} else if(param == keys[2][0]) {
                         //Url validation
                         if(keys[2][1].test(elem.val()) || keys[2][2].test(elem.val())) {
-                            elem.css({outline:'none'});
+                            elem.css(dStyle[1]);
 							alert('Tested input url !');
                         } else {
-							elem.css({outline:'2px solid #E7056B'});
+							elem.css(dStyle[0]);
+                        }
+                    } else if(param == keys[3][0]) {
+                        //CEP validation
+                        if(keys[3][1].test(elem.val())) {
+                            elem.css(dStyle[1]);
+							alert('Tested input CEP !');
+                        } else {
+							elem.css(dStyle[0]);
                         }
                     } else {
 						return false;

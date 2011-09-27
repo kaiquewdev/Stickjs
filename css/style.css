@@ -286,8 +286,43 @@ td { vertical-align: top; }
   h2, h3 { page-break-after: avoid; }
 }
 
-
 /*== Style ==*/
+fieldset div {
+  margin:5px 0;
+  padding:5px 0;
+}
+
+fieldset input {
+  margin:0 10px 0 0;
+  border:1px solid #ccc;
+  min-width:300px;
+  padding:8px;
+
+  border-radius: 4px  4px  4px  4px;
+  -moz-border-radius: 4px  4px  4px  4px;
+  -webkit-border-radius: 4px  4px  4px  4px;
+  -khtml-border-radius: 4px  4px  4px  4px;
+}
+
+fieldset button, button, input[type='submit'] {
+  padding:8px 15px;
+  background:#e7056b;
+  color:#fff;
+  border:1px solid #8B1A1A;
+  text-shadow:0 -1px 0 #242424;
+
+  border-radius: 4px  4px  4px  4px;
+  -moz-border-radius: 4px  4px  4px  4px;
+  -webkit-border-radius: 4px  4px  4px  4px;
+  -khtml-border-radius: 4px  4px  4px  4px;
+
+  font-weight:700;
+}
+
+fieldset button:hover, button:hover, input[type='submit']:hover {
+  background:#F42281;
+}
+
 header {
 	margin: 0;
 	padding: 0;
@@ -310,13 +345,18 @@ header {
 	background: linear-gradient(left, #0e0e0e 50%,#2b2b2b 97%);
 }
 
+h1, h2, h3, h4, h5, h6, li, p, span, a {
+  font-family: ‘Metrophobic’, Arial, serif; font-weight: 400;
+}
+
 header h1 {
 	width:250px;
 	padding:15px;
-	color: #121212;
-	background:#fff;
-	border-top:5px solid #e7056b;
-;
+  color: #fff;
+	/*color: #121212;
+	background:#fff;*/
+  border-top:1px solid #e7056b;
+	border-bottom:3px solid #e7056b;
 }
 
 header .logo{
@@ -326,13 +366,22 @@ header .logo{
 	cursor: pointer;
 }
 
-header h1 span {
+header h1 span, div.demos h3 span{
 	color: #e7056b;
-	text-shadow: 0 1px 1px #000;
+}
+
+.separator {
+  border:none;
+  height: 1px;
+  background:#e7056b;
 }
 
 div.main {
 	margin: 40px 10px;
+}
+
+div.demos {
+  padding:0 10px;
 }
 
 div.demos ul{
@@ -341,10 +390,39 @@ div.demos ul{
 }
 div.demos ul li{
 	margin:10px 0;
+  padding:5px 0;
 	list-style:none;
 	border-bottom:1px solid #ccc;
 }
+
 div.demos ul li p, div.demos ul li fieldset{
 	padding:5px;
     margin:10px;
+}
+
+div.demos ul li p {
+  float:left;
+  min-width:150px;
+}
+
+/*Remove border of last element*/
+div.demos ul li:last-child { border: none;}
+
+/*Footer*/
+footer div {
+  border-top:1px solid red;
+  padding:10px 0;
+  color:#e7056b;
+
+  border-top: 1px solid;
+  border-color: #e7056b;
+
+  background: #0e0e0e;
+  background: -moz-linear-gradient(left, #0e0e0e 50%, #2b2b2b 97%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%,#0e0e0e), color-stop(97%,#2b2b2b));
+  background: -webkit-linear-gradient(left, #0e0e0e 50%,#2b2b2b 97%);
+  background: -o-linear-gradient(left, #0e0e0e 50%,#2b2b2b 97%);
+  background: -ms-linear-gradient(left, #0e0e0e 50%,#2b2b2b 97%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e0e0e', endColorstr='#2b2b2b',GradientType=1 );
+  background: linear-gradient(left, #0e0e0e 50%,#2b2b2b 97%);
 }

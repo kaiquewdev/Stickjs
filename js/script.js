@@ -31,7 +31,10 @@ $('#demo6').bind('click', function (){
 	Stick.collect('#url_field');
 });
 
-//Test for extend
+//Test a seventh behavior
+$('#demo7').bind('click', function (){
+	Stick.collect('#cep_field');
+});
 
 
 

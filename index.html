@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-
+  <link href='http://fonts.googleapis.com/css?family=Antic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/style.css">
   
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -39,51 +39,79 @@
   </header>
   <div class="main" role="main">
 	
+  <h2 class='subtitle'><span>Behaviors</span></h2>
+  <hr class='separator'>
 	<div class="demos">
+    <h3><span>Default Window</span> Behaviors:</h3>
 		<ul>
 			<li>
 				<p id='alert' data-stick='$.alert:Testing a behavior !'> 
-                    Testing alert behavior. <button id='demo1'>Click me</button>
+                    Testing alert behavior.
         </p>
+
+        <button id='demo1'>Alert</button>
 			</li>
 			<li>
 				<p id='confirm' data-stick='$.confirm:Do you want confirm this demo ?'> 
-                    Testing confirm behavior. <button id='demo2'>Go!</button>
+                    Testing confirm behavior.
         </p>
+
+        <button id='demo2'>Confirm</button>
 			</li>
 			<li>
 				<p id='log' data-stick='$.log:Code for debug!'> 
-                    Testing log behavior. <button id='demo3'>Debug</button>
+                    Testing log behavior.
         </p>	
+
+        <button id='demo3'>Console log</button>
 			</li>
+    </ul>
+
+    <hr class='separator'>
+
+    <h3><span>Validation</span> Behaviors:</h3>
+    <ul>
 			<li>
 				<fieldset id='email'>
-                    <label for='email'>Email: </label> 
+                    <div><label for='email'>Email: </label></div>
                     <input type="text" id="email_field" data-stick='$.valid:email' /> 
                     <button id='demo4'>Validate this email</button>
         </fieldset>
 			</li>
-			<li>
+			
+      <li>
 				<fieldset id='date'> 
-                    <label for='date'>Date: </label> 
+                    <div><label for='date'>Date: </label></div>
                     <input type="text" id="date_field" data-stick='$.valid:date' /> 
                     <button id='demo5'>Validate this date</button>
         </fieldset>	
 			</li>
-            <li>
+      
+      <li>
 				<fieldset id='url'> 
-                    <label for='url'>Url: </label>
+                    <div><label for='url'>URL: </label></div>
                     <input type="text" id="url_field" data-stick='$.valid:url' /> 
                     <button id='demo6'>Validate this url</button>
         </fieldset>	
 			</li>
 
+      <li>
+        <fieldset id='cep'> 
+                    <div><label for='cep'>CEP: </label></div>
+                    <input type="text" id="cep_field" data-stick='$.valid:cep' /> 
+                    <button id='demo7'>Validate this cep</button>
+        </fieldset> 
+      </li>
 		</ul>
+    <hr class='separator'>
+
 	</div>
 	
   </div>
   <footer>
-
+      <center>
+        <div>&copy; 2011</div>
+      </center>
   </footer>
 
 
