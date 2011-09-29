@@ -33,6 +33,12 @@ $('#demo7').bind('click', function (){
 	Stick.collect('#cep_field');
 });
 
+//Test a eigth behavior
+$('#demo8').bind('click', function (){
+	Stick.collect('#zip_field');
+});
+
+
 //Waint for complete load window object
 $(window).load(function() {
 	$('header').animate({height:'150px'}, 800).queue(function() {

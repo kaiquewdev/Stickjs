@@ -1,9 +1,9 @@
-/* 
-*	Stick.js 
+/*
+*	Stick.js
 *	Copyright (C) 2011  Kaique Silva: kaique.developer@gmail.com
-*	
+*
 * 	Stick.js Help with behaviors performed directly in the html tags.
-* 
+*
 *	This program is free software: you can redistribute it and/or modify
 *	it under the terms of the GNU General Public License as published by
 *	the Free Software Foundation, either version 3 of the License, or
@@ -21,7 +21,7 @@
 var Stick = {
 	//Events for use
 	newEvent: function (behavior, param, elem) {
-		//Behaviors		
+		//Behaviors
 		this.handlers = {
 			'alert': function () {
 				this.msg = param || '';
@@ -59,7 +59,7 @@ var Stick = {
 								//Style test
 								{boxShadow:'0 0 4px #e7056b'},
 								{boxShadow:'none'}];
-				
+
 				if (typeof elem.val() != 'undefined' || elem.attr('type') == 'text') {
 					if (param == keys[0][0]) {
 						//Email validation
@@ -101,7 +101,7 @@ var Stick = {
 				}
 			}
 		};
-		
+
 		//Verify arguments
 		if (typeof behavior !== 'undefined' && typeof param !== 'undefined') {
 			return this.handlers[behavior](param);
@@ -118,7 +118,7 @@ var Stick = {
 			p = /^[$][.]+[a-z:]/,
 			result = [],
 			callback = [];
-		
+
 		//Find for special markation
 		if (p.test(str) == true) {
 			/*Filter to result*/
@@ -127,7 +127,7 @@ var Stick = {
 			/*Replace to clean results*/
 			callback.push(result[0][0].replace(/[$]+[.]/,'').replace(/[:]/,''));
 			callback.push(result[1][0].replace(/[:]/,''));
-			
+
 			//Return a array object if true
 			if (callback !== []) {
 				return callback;
@@ -145,7 +145,7 @@ var Stick = {
 			target = $(arguments[0]),
 			//Select a behavior in title, rel or data attribute
 			get = target.attr('title') || target.attr('data-stick');
-		
+
 		return newEvent(parse(get)[0], parse(get)[1], target);
 	}
 };

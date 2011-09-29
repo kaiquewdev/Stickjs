@@ -1,9 +1,9 @@
-/* 
-*	Stick.js 
+/*
+*	Stick.js
 *	Copyright (C) 2011  Kaique Silva: kaique.developer@gmail.com
-*	
+*
 * 	Stick.js Help with behaviors performed directly in the html tags.
-* 
+*
 *	This program is free software: you can redistribute it and/or modify
 *	it under the terms of the GNU General Public License as published by
 *	the Free Software Foundation, either version 3 of the License, or
@@ -21,7 +21,7 @@
 var Stick = {
 	//Events for use
 	newEvent: function (behavior, param, elem) {
-		//Behaviors		
+		//Behaviors
 		this.handlers = {
 			'alert': function () {
 				this.msg = param || '';
@@ -37,7 +37,7 @@ var Stick = {
 			},
 			'valid': function () {
 				//
-				var keys = [
+                var keys = [
 							//Email Validation
 							['email',
 							/[a-z0-9]+@[a-z0-9]+(([\.][a-z]{2,3}){1,2})$/],
@@ -51,15 +51,18 @@ var Stick = {
                             /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/],
 	                        //CEP Validation
 	                        ['cep',
-	                        /([0-9]{8})/,
-	                        /([0]{8})|([1]{8})|([2]{8})|([3]{8})|([4]{8})|([5]{8})|([6]{8})|([7]{8})|([8]{8})|([9]{8})/]
+	                        /([0-9]{9})/,
+	                        /([0]{8})|([1]{8})|([2]{8})|([3]{8})|([4]{8})|([5]{8})|([6]{8})|([7]{8})|([8]{8})|([9]{8})/],
+                            ['zip',
+                            /[0-9]{9}/,
+                            /([0]{9})|([1]{9})|([2]{9})|([3]{9})|([4]{9})|([5]{9})|([6]{9})|([7]{9})|([8]{9})|([9]{9})/]
 				];
 
 				var dStyle = [
 								//Style test
 								{boxShadow:'0 0 4px #e7056b'},
 								{boxShadow:'none'}];
-				
+
 				if (typeof elem.val() != 'undefined' || elem.attr('type') == 'text') {
 					if (param == keys[0][0]) {
 						//Email validation
@@ -93,6 +96,14 @@ var Stick = {
                         } else {
 							elem.css(dStyle[0]);
                         }
+                    } else if(param == keys[4][0]) {
+                        //Zip postal code validation
+                        if(keys[4][1].test(elem.val()) && elem.val().length == 9 && !keys[3][2].test(elem.val())) {
+                            elem.css(dStyle[1]);
+							alert('Tested input Zip postal code !');
+                        } else {
+							elem.css(dStyle[0]);
+                        }
                     } else {
 						return false;
 					}
@@ -101,7 +112,7 @@ var Stick = {
 				}
 			}
 		};
-		
+
 		//Verify arguments
 		if (typeof behavior !== 'undefined' && typeof param !== 'undefined') {
 			return this.handlers[behavior](param);
@@ -118,7 +129,7 @@ var Stick = {
 			p = /^[$][.]+[a-z:]/,
 			result = [],
 			callback = [];
-		
+
 		//Find for special markation
 		if (p.test(str) == true) {
 			/*Filter to result*/
@@ -127,7 +138,7 @@ var Stick = {
 			/*Replace to clean results*/
 			callback.push(result[0][0].replace(/[$]+[.]/,'').replace(/[:]/,''));
 			callback.push(result[1][0].replace(/[:]/,''));
-			
+
 			//Return a array object if true
 			if (callback !== []) {
 				return callback;
@@ -145,7 +156,7 @@ var Stick = {
 			target = $(arguments[0]),
 			//Select a behavior in title, rel or data attribute
 			get = target.attr('title') || target.attr('data-stick');
-		
+
 		return newEvent(parse(get)[0], parse(get)[1], target);
 	}
 };
