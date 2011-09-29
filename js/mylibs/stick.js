@@ -159,6 +159,10 @@ var Stick = {
 			get = target.attr('title') || target.attr('data-stick');
 
 		return newEvent(parse(get)[0], parse(get)[1], target);
-	}
+	},
+    //Auto initialize the stick for get tags
+    auto: function () {
+        //Init the script
+    }
 };
 
