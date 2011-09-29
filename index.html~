@@ -7,7 +7,7 @@ oldie" lang="en"> <![endif]--> <!-- Consider adding a manifest.appcache:
 h5bp.com/d/Offline --> <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-   
+
   <meta charset="utf-8">
 
   <!-- Use the .htaccess and remove these lines to avoid edge case issues.
@@ -84,15 +84,14 @@ h5bp.com/d/Offline --> <!--[if gt IE 8]><!-->
                     <input type="text" id="date_field" data-stick='$.valid:date' />
                     <button id='demo5'>Validate this date</button>
         </fieldset>
-        </li>
+                        </li>
 
         <li>
-               <fieldset id='url'>
+                                <fieldset id='url'>
                     <div><label for='url'>URL: </label></div>
                     <input type="text" id="url_field" data-stick='$.valid:url' />
                     <button id='demo6'>Validate this url</button>
                 </fieldset>
-                
         </li>
 
       <li>
@@ -102,14 +101,6 @@ h5bp.com/d/Offline --> <!--[if gt IE 8]><!-->
                     <button id='demo7'>Validate this cep</button>
         </fieldset>
       </li>
-        <li>
-            <fieldset id='zip'>
-                    <div><label for='zip'>Zip: </label></div>
-                    <input type="text" id="zip_field" data-stick='$.valid:zip' />
-                    <button id='demo8'>Validate this Zip postal code</button>
-            </fieldset>
-        </li>
-
                 </ul>
     <hr class='separator'>
 
