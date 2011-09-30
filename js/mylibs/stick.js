@@ -161,8 +161,13 @@ var Stick = {
 		return newEvent(parse(get)[0], parse(get)[1], target);
 	},
     //Auto initialize the stick for get tags
-    auto: function () {
+    auto: function (option) {
         //Init the script
+        if (typeof option != 'undefined') {
+            return 'Action'
+        } else {
+            return 'Oops!'    
+        }
     }
 };
 
