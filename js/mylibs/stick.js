@@ -18,156 +18,70 @@
 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-var Stick = {
-	//Events for use
-	newEvent: function (behavior, param, elem) {
-		//Behaviors
-		this.handlers = {
-			'alert': function () {
-				this.msg = param || '';
-				this.content = window.alert(this.msg);
-			},
-			'confirm': function () {
-				this.msg = param || '';
-				this.content = window.confirm(this.msg);
-			},
-			'log': function () {
-				this.msg = param;
-				this.content = console.log(this.msg);
-			},
-			'valid': function () {
-				//
-                var keys = [
-							//Email Validation
-							['email',
-							/[a-z0-9]+@[a-z0-9]+(([\.][a-z]{2,3}){1,2})$/],
-							//Date Validation
-							['date',
-							/([0][0-9]|[1-2][0-9]|[3][0-1])\/([0][0-9]|[1][0-2])\/([0-9]{4})/,
-							/([0][0-9]|[1-2][0-9]|[2][0-9])\/([0][2])\/([0-9]{4})/],
-                            //URL Validation
-                            ['url',
-                            /^(htt(p|ps)\:\/\/)([a-z0-9]{1,255})\.(([a-z]{2,3}))/,
-                            /^(htt(p|ps)\:\/\/)([a-z]{2,4})\.([a-z0-9]{1,255})\.(([a-z]{2,3}))/],
-	                        //CEP Validation
-	                        ['cep',
-	                        /([0-9]{9})/,
-	                        /([0]{8})|([1]{8})|([2]{8})|([3]{8})|([4]{8})|([5]{8})|([6]{8})|([7]{8})|([8]{8})|([9]{8})/],
-                            //Zip postal code validation
-                            ['zip',
-                            /[0-9]{9}/,
-                            /([0]{9})|([1]{9})|([2]{9})|([3]{9})|([4]{9})|([5]{9})|([6]{9})|([7]{9})|([8]{9})|([9]{9})/]
-				];
+var Stick = (function Stick() {
+	var _stick = function _stick() {};
 
-				var dStyle = [
-								//Style test
-								{boxShadow:'0 0 4px #e7056b'},
-								{boxShadow:'none'}];
-
-				if (typeof elem.val() != 'undefined' || elem.attr('type') == 'text') {
-					if (param == keys[0][0]) {
-						//Email validation
-						if (keys[0][1].test(elem.val())) {
-							elem.css(dStyle[1]);
-							alert('Tested input email !');
-						} else {
-							elem.css(dStyle[0]);
-						}
-					} else if (param == keys[1][0]) {
-						//Date validation
-						if (keys[1][1].test(elem.val()) && keys[1][2].test(elem.val())) {
-							elem.css(dStyle[1]);
-							alert('Tested input date !');
-						} else {
-							elem.css(dStyle[0]);
-						}
-					} else if(param == keys[2][0]) {
-                        //Url validation
-                        if(keys[2][1].test(elem.val()) || keys[2][2].test(elem.val())) {
-                            elem.css(dStyle[1]);
-							alert('Tested input url !');
-                        } else {
-							elem.css(dStyle[0]);
-                        }
-                    } else if(param == keys[3][0]) {
-                        //CEP validation
-                        if(keys[3][1].test(elem.val()) && elem.val().length == 8 && !keys[3][2].test(elem.val())) {
-                            elem.css(dStyle[1]);
-							alert('Tested input CEP !');
-                        } else {
-							elem.css(dStyle[0]);
-                        }
-                    } else if(param == keys[4][0]) {
-                        //Zip postal code validation
-                        if(keys[4][1].test(elem.val()) && elem.val().length == 9 && !keys[3][2].test(elem.val())) {
-                            elem.css(dStyle[1]);
-							alert('Tested input Zip postal code !');
-                        } else {
-							elem.css(dStyle[0]);
-                        }
-                    } else {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-		};
-
-		//Verify arguments
-		if (typeof behavior !== 'undefined' && typeof param !== 'undefined') {
-			return this.handlers[behavior](param);
-		} else {
-			return false;
+	_stick.prototype.compilation = function compilation( pattern ) {
+		pattern = pattern || '';
+		
+		if ( pattern ) {
+			pattern = new RegExp( pattern );
 		}
 
-		return this;
-	},
-	//Identify the marking
-	parse: function () {
-		//Get a target and execute one handler
-		var str = arguments[0],
-			p = /^[$][.]+[a-z:]/,
-			result = [],
-			callback = [];
+		return pattern;
+	};
 
-		//Find for special markation
-		if (p.test(str) == true) {
-			/*Filter to result*/
-			result.push(str.match(/^[($.)]+[a-z]+[:]/));
-			result.push(str.match(/[:].*$/));
-			/*Replace to clean results*/
-			callback.push(result[0][0].replace(/[$]+[.]/,'').replace(/[:]/,''));
-			callback.push(result[1][0].replace(/[:]/,''));
+	_stick.prototype.parse = function parse( input ) {
+		// Parse stickjs syntax: bahavior:property(value)
+		input = input || '';
 
-			//Return a array object if true
-			if (callback !== []) {
-				return callback;
-			} else {
-				return false;
+		if ( input ) {
+			var that = this,
+				_input = input,
+				compilation = {
+					property: that.compilation(/[\(].*.[\)]$/),
+					value: [
+						that.compilation(/[\(].*.[\)]$/), 
+						that.compilation(/^[\(]/), 
+						that.compilation(/[\)]$/)]
+				};
+			
+			input = {
+				behavior: _input.split(':')[0],
+				property: _input.split(':')[1].replace(compilation.behavior, ''),
+				value: _input.split(':')[1].match(compilation.value[0])[0].replace(compilation.value[1], '').replace(compilation.value[2], '')
 			}
-		} else {
-			return false;
+		}
+
+		return input;
+	};
+	
+	return new _stick();
+} ());
+
+var vows = require('vows'),
+	assert = require('assert');
+
+vows.describe('Stick js').addBatch({
+	'Compilation test': {
+		topic: Stick.compilation(/[a-z]/),
+
+		'Return a regex obect': function ( topic ) {
+			assert.equal( topic, '/[a-z]/' );
 		}
 	},
-	//Collecting information in the tag to the process behavior
-	collect: function () {
-		var parse = this.parse,
-			newEvent = this.newEvent,
-			target = $(arguments[0]),
-			//Select a behavior in title, rel or data attribute
-			get = target.attr('title') || target.attr('data-stick');
 
-		return newEvent(parse(get)[0], parse(get)[1], target);
-	},
-    //Auto initialize the stick for get tags
-    auto: function (option) {
-        //Init the script
-        if (typeof option != 'undefined') {
-            return 'Action'
-        } else {
-            return 'Oops!'    
-        }
-    }
-};
+	'Parse test': {
+		topic: Stick.parse('behavior:property(value)'),
 
+		'Return o anilize': function ( topic ) {
+			var output = {
+				 behavior: 'behavior',  
+				 property: 'property', 
+				 value: 'value' 
+			};
+
+			assert.notDeepEqual( topic, output);
+		}
+	}
+}).run();
