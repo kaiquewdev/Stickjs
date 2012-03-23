@@ -22,13 +22,16 @@ var Stick = (function Stick() {
 	var _stick = function _stick() {};
 
 	_stick.prototype.compilation = function compilation( pattern ) {
+		var that = this;
+
 		pattern = pattern || '';
-		
-		if ( pattern ) {
-			pattern = new RegExp( pattern );
+		that.pattern = new RegExp;
+
+		if ( pattern && that.pattern ) {
+			that.pattern.compile( pattern );
 		}
 
-		return pattern;
+		return that;
 	};
 
 	_stick.prototype.parse = function parse( input ) {
@@ -38,18 +41,19 @@ var Stick = (function Stick() {
 		if ( input ) {
 			var that = this,
 				_input = input,
+				_compile = that.compilation,
 				compilation = {
-					property: that.compilation(/[\(].*.[\)]$/),
 					value: [
-						that.compilation(/[\(].*.[\)]$/), 
-						that.compilation(/^[\(]/), 
-						that.compilation(/[\)]$/)]
+						_compile(/[(].*.[)]/).pattern,
+						_compile(/^[\(]/).pattern,
+						_compile(/[\)]$/).pattern,
+					]
 				};
 			
 			input = {
 				behavior: _input.split(':')[0],
-				property: _input.split(':')[1].replace(compilation.behavior, ''),
-				value: _input.split(':')[1].match(compilation.value[0])[0].replace(compilation.value[1], '').replace(compilation.value[2], '')
+				property: _input.split(':')[1].replace(compilation.value[0], ''),
+				value: _input.split(':')[1].match(compilation.value[0]).join('').replace(compilation.value[1], '').replace(compilation.value[2], '')
 			}
 		}
 
@@ -59,15 +63,22 @@ var Stick = (function Stick() {
 	return new _stick();
 } ());
 
+console.log(Stick.parse('behavior:property(value)'))
+
 var vows = require('vows'),
 	assert = require('assert');
 
 vows.describe('Stick js').addBatch({
 	'Compilation test': {
-		topic: Stick.compilation(/[a-z]/),
+		topic: Stick.compilation(/[a-z]/).pattern,
 
 		'Return a regex obect': function ( topic ) {
 			assert.equal( topic, '/[a-z]/' );
+		},
+
+		'Recompile': function ( topic ) {
+			var topic = Stick.compilation(/[A-Z]/).pattern;
+			assert.equal( topic, '/[A-Z]/');
 		}
 	},
 
@@ -77,11 +88,11 @@ vows.describe('Stick js').addBatch({
 		'Return o anilize': function ( topic ) {
 			var output = {
 				 behavior: 'behavior',  
-				 property: 'property', 
-				 value: 'value' 
+				 value: 'value',
+				 property: 'property' 
 			};
 
-			assert.notDeepEqual( topic, output);
+			assert.deepEqual( topic, output);
 		}
 	}
 }).run();
