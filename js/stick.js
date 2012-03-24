@@ -19,9 +19,28 @@
 */
 
 var Stick = (function Stick() {
-	var _stick = function _stick() {};
+	var _stick = function _stick() {},
+        _behavior = {};
+
+    // Default behaviors
+    
+    // Built-in validation
+    _behavior.validation = {
+        isEmpty: function isEmpty( value ) {
+            var output = false;
+
+            if ( value ) {
+                output = true;    
+            } if ( !value ) {
+                output = false;    
+            }
+
+            return output;
+        }
+    };
 
 	_stick.prototype.compilation = function compilation( pattern ) {
+        // Compile regex one time, and after change the value and recopile by object was created
 		var that = this;
 
 		pattern = pattern || '';
@@ -59,11 +78,41 @@ var Stick = (function Stick() {
 
 		return input;
 	};
+
+    _stick.prototype.setBehavior = function setBehavior( name, module ) {
+        // Set root behavior
+        name = name || '';
+        mobule = module || {};
+
+        if ( name && module ) {
+            _behavior[name] = module;
+        }
+
+        return;
+    };
+
+    _stick.prototype.setBehaviorModule = function setBehaviorModule( module, subModule, fn ) {
+        output = output || '';
+        subModule = subModule || '';
+        fn = fn || function () {};
+
+        if ( module && subModule ) {
+            _behavior[module][subModule] = fn;
+        }
+
+        return;
+    }
+    
+    _stick.prototype.hasBehavior = function hasBehavior() {};
+    
+    _stick.prototype.surroundBehavior = function surroundBehavior() {};
+    
+    _stick.prototype.execute = function execute() {
+        
+    };
 	
 	return new _stick();
 } ());
-
-console.log(Stick.parse('behavior:property(value)'))
 
 var vows = require('vows'),
 	assert = require('assert');
@@ -94,5 +143,16 @@ vows.describe('Stick js').addBatch({
 
 			assert.deepEqual( topic, output);
 		}
-	}
+	},
+
+    'Behaviors test': {
+        topic: Stick.setBehavior('ui', {}),
+
+        'Set a module in behavior': function ( topic ) {
+            assert.equal( topic, undefined );
+        }, 
+
+        'Set a sub modules in behavior': function ( topic ) {
+        }
+    }
 }).run();
